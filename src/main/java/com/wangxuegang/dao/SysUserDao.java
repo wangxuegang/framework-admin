@@ -27,4 +27,6 @@ public interface SysUserDao {
     int updateByPrimaryKeySelective(SysUser record);
 
     int updateByPrimaryKey(SysUser record);
+
+	SysUser selectOne(SysUser user);
 }

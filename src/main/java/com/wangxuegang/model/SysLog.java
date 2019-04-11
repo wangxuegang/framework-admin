@@ -45,8 +45,27 @@ public class SysLog implements Serializable {
     private Date createDate;
 
     private static final long serialVersionUID = 1L;
+    
+    
 
-    public Integer getId() {
+    public SysLog() {
+    	
+	}
+    
+    /**
+     * 有参构造方法
+     * @param username
+     * @param operation
+     * @param params
+     */
+	public SysLog(String username, String operation, String method,
+			String params, Integer time, String ip, Date createDate) {
+		this.username = username;
+		this.operation = operation;
+		this.params = params;
+	}
+
+	public Integer getId() {
         return id;
     }
 

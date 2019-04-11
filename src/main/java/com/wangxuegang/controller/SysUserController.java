@@ -7,22 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import com.wangxuegang.model.SysUser;
 import com.wangxuegang.service.user.SysUserService;
 import com.wangxuegang.utils.APIResponse;
 
 @Api("用户管理")
 @Controller
-@RequestMapping(value = "/sysUser")
+@RequestMapping(value = "/sys")
 public class SysUserController {
 
     @Autowired
     private SysUserService sysUserService;
     
-    @ApiOperation("用户信息")
-    @GetMapping("/getSysUser")
+    @ApiOperation("用户新增")
+    @PostMapping("/saveSysUser")
     @ResponseBody
-    public APIResponse<String> getSysUser(){
-        return APIResponse.success(sysUserService.getUserInfoById(1));
+    public APIResponse<String> saveSysUser(@RequestBody SysUser user){
+    	sysUserService.save(user);
+        return APIResponse.success();
     }
     
 }

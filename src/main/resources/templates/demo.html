@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+	<!-- 内容	start -->
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div style="margin:0 auto;width:300px;height:100px;padding-top: 15%;">
+					<form role="form" action="">
+						<div class="form-group">
+							 <label>通用快速开发框架</label>
+						</div>
+						<div class="form-group">
+							 <input class="form-control" id="userName" type="text" placeholder="请输入用户"/>
+						</div>
+						<div class="form-group">
+							 <input class="form-control" id="password" type="password" placeholder="请输入密码"/>
+						</div>
+						<div class="form-group">
+							 <button type="submit" class="btn btn-default">登录</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容	end -->
+
+	<!-- javascript	strat -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("button").on("click", function(){
+				alert( $(this).text() );
+			});
+		});
+	</script>
+	<!-- javascript	end -->
+</body>
+</html>

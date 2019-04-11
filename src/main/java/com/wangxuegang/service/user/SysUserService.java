@@ -7,11 +7,6 @@ import com.wangxuegang.model.SysUser;
 
 @Service
 public interface SysUserService {
-
-    int updateUserInfo(SysUser sysUser);
-
-    SysUser getUserInfoById(Integer uId);
-
-    SysUser login(String username, String password);
-
+	
+	public void save(SysUser user);
 }
