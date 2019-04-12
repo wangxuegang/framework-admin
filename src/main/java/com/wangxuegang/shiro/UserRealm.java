@@ -57,7 +57,6 @@ public class UserRealm extends AuthorizingRealm {
 		// 系统管理员，拥有最高权限
 		if (userId == SysConst.SUPER_ADMIN) {
 			
-			//List<SysMenu> menuList = sysMenuDao.selectList(null);
 			List<SysMenu> menuList = sysMenuDao.selectByExample(null);
 			
 			permsList = new ArrayList<>(menuList.size());
@@ -91,22 +90,22 @@ public class UserRealm extends AuthorizingRealm {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 
 		// 查询用户信息
-		SysUser user = new SysUser();
-		user.setUsername(token.getUsername());
+		SysUser sysUser = new SysUser();
+		sysUser.setUsername(token.getUsername());
 		
-		user = sysUserDao.selectOne(user);
+		sysUser = sysUserDao.selectOne(sysUser);
 
 		// 账号不存在
-		if (user == null) {
+		if (sysUser == null) {
 			throw new UnknownAccountException("账号或密码不正确");
 		}
 
 		// 账号锁定
-		if (user.getStatus() == 0) {
+		if (sysUser.getStatus() == 0) {
 			throw new LockedAccountException("账号已被锁定,请联系管理员");
 		}
 
-		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
+		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(sysUser, sysUser.getPassword(), ByteSource.Util.bytes(sysUser.getSalt()), getName());
 		return info;
 	}
 

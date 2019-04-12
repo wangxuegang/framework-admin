@@ -263,4 +263,13 @@
       order_num = #{orderNum,jdbcType=INTEGER}
     where menu_id = #{menuId,jdbcType=INTEGER}
   </update>
+  
+  <select id="queryListParentId"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	SELECT
+	<include refid="Base_Column_List" />
+	FROM
+		sys_menu
+	WHERE
+		parent_id = #{parentId,jdbcType=INTEGER}
+  </select>
 </mapper>

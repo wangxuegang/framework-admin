@@ -18,7 +18,7 @@ import com.wangxuegang.shiro.UserRealm;
 
 
 /**
- * Shiro的配置文件
+ * Shiro配置
  */
 @Configuration
 public class ShiroConfig {
@@ -45,14 +45,32 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/");
         
         Map<String,String> map = new HashMap<String, String>();
-        /** 允许请求的地址 */
-        map.put("/swagger/**", "anon");
-		map.put("/statics/**", "anon");
-		map.put("/login.html", "anon");
+        
+        //允许请求的静态资源   start
+		map.put("/css/**", "anon");
+		map.put("/js/**", "anon");
+		map.put("/images/**", "anon");
+		// 允许请求的静态资源   end
+		
+		//swagger2 允许请求的资源   start
+		map.put("/swagger-ui.html", "anon");
+		map.put("/swagger-resources/**", "anon");
+		map.put("/v2/**", "anon");
+		map.put("/webjars/**", "anon");
+		map.put("/configuration/**", "anon");
+		//swagger2 允许请求的资源   end
+		
+		//允许请求的系统资源   start
+		map.put("/sys/**", "anon");
+		/*map.put("/sys/saveSysUser", "anon");
+		map.put("/sys/nav", "anon");
 		map.put("/sys/login", "anon");
-		map.put("/sys/saveSysUser", "anon");
+		map.put("/sys/logout", "anon");*/
+		//允许请求的系统资源   end
+		
 		/** 认证才可以访问 */
 		map.put("/**", "authc");
+		
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }

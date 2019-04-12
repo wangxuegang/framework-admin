@@ -11,20 +11,18 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<div style="margin:0 auto;width:300px;height:100px;padding-top: 15%;">
-					<form role="form" action="login" method="post">
-						<div class="form-group">
-							 <label>通用快速开发框架</label>
-						</div>
-						<div class="form-group">
-							 <input class="form-control" id="username" name="username" type="text" placeholder="请输入用户名"/>
-						</div>
-						<div class="form-group">
-							 <input class="form-control" id="password" name="password" type="password" placeholder="请输入密码"/>
-						</div>
-						<div class="form-group">
-							 <button type="submit" class="btn btn-default">登录</button>
-						</div>
-					</form>
+					<div class="form-group">
+						 <label>通用快速开发框架</label>
+					</div>
+					<div class="form-group">
+						 <input class="form-control" id="username" type="text" placeholder="请输入用户名"/>
+					</div>
+					<div class="form-group">
+						 <input class="form-control" id="password" type="password" placeholder="请输入密码"/>
+					</div>
+					<div class="form-group">
+						 <button id="loginBtn">登录</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -36,7 +34,24 @@
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script type="text/javascript">
 		$(function(){
-			
+			$("#loginBtn").on("click",function(){
+				$.ajax({
+					type: "POST",
+				    url: "login",
+				    data: {"username":$("#username").val(),
+				    	   "password":$("#password").val(),},
+			    	async : false,
+			   		dataType : "json",
+				    success: function(result){
+						if(result.code == "success"){//登录成功
+							window.location.href ='home';
+							return;
+						}else{
+							alert(result.msg);
+						}
+					}
+				});
+			});
 		});
 	</script>
 	<!-- javascript	end -->

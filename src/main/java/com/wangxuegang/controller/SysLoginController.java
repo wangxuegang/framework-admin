@@ -35,7 +35,7 @@ public class SysLoginController {
     @ApiOperation("登录")
     @PostMapping("/login")
     @ResponseBody
-	public APIResponse login(   HttpServletRequest request,
+	public APIResponse toLogin(   HttpServletRequest request,
 					            HttpServletResponse response,
 					            @ApiParam(name = "username", value = "用户名", required = true)
 					            @RequestParam(name = "username", required = true)
@@ -48,17 +48,24 @@ public class SysLoginController {
 			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 			subject.login(token);
 		} catch (UnknownAccountException e) {
-			return new APIResponse(e.getMessage());
+			return new APIResponse("fail",e.getMessage());
 		} catch (IncorrectCredentialsException e) {
-			return new APIResponse("账号或密码不正确");
+			return new APIResponse("fail","账号或密码不正确");
 		} catch (LockedAccountException e) {
-			return new APIResponse("账号已被锁定,请联系管理员");
+			return new APIResponse("fail","账号已被锁定,请联系管理员");
 		} catch (AuthenticationException e) {
-			return new APIResponse("账户验证失败");
+			return new APIResponse("fail","账户验证失败");
 		}
     	
     	System.out.println(ShiroUtils.getUserEntity().toString());
     	
     	return APIResponse.success();
     }
+    
+    @ApiOperation("退出")
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout() {
+		ShiroUtils.logout();
+		return "login.html";
+	}
 }

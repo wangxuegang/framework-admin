@@ -27,4 +27,6 @@ public interface SysMenuDao {
     int updateByPrimaryKeySelective(SysMenu record);
 
     int updateByPrimaryKey(SysMenu record);
+
+	List<SysMenu> queryListParentId(Integer parentId);
 }
