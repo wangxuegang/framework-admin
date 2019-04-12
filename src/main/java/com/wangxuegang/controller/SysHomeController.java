@@ -26,4 +26,10 @@ public class SysHomeController {
     public String userManage(){
     	return "user.html";
     }
+    
+    @ApiOperation("Session失效页面")
+    @GetMapping("/sessionOut")
+    public String sessionOut(){
+    	return "sessionOut.html";
+    }
 }

@@ -29,7 +29,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 			if(sysUser!=null){
 				return true;
 			}else{
-				response.sendRedirect(request.getContextPath() + "/sys/login");
+				response.sendRedirect(request.getContextPath() + "/sys/sessionOut");
 				return false;		
 			}
 		}
